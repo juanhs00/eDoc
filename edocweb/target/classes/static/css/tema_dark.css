@@ -1,0 +1,26 @@
+body {
+	background-color: #6f7780;
+	color: rgb(76, 76, 88);
+}
+
+.container {
+	margin-top: 20px;
+}
+
+footer {
+	position: fixed;
+	bottom: 0;
+	margin: auto;
+	padding: 20px;
+	width: 100%;
+	text-align: center;
+}
+
+footer .info-copyrigth {
+	display: inline-block;
+	color: #fff;
+}
+
+footer .info-copyrigth a {
+	color: #fff;
+}

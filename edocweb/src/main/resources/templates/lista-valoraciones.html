@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layouts/base::head(dark)">
+	<meta charset="UTF-8"/>
+</head>
+<body>
+	<header th:replace="layouts/base::header(dark)"></header>
+
+	<div class="container">
+		<div class="card bg-white">
+			<div class="card-header">
+				<h3 th:text="#{valoraciones.lista.titulo}"></h3>
+			</div>
+			<div class="card-body">
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th th:text="#{valoraciones.Valoracion.puntuacionProfesor}"></th>
+							<th th:text="#{valoraciones.Valoracion.puntuacionAsignatura}"></th>		
+							<th th:text="#{valoraciones.Valoracion.comentarioAsignatura}"></th>
+							<th th:text="#{valoraciones.Valoracion.comentarioProfesor}"></th>		
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="Valoracion: ${valoraciones}">
+							<!-- if (valoracion.nombreAsignatura == id de la vista)-->
+							<td th:text="${Valoracion.puntuacionProfesor}"></td>
+							<td th:text="${Valoracion.puntuacionAsignatura}"></td>
+							<td th:text="${Valoracion.comentarioAsignatura}"></td>
+							<td th:text="${Valoracion.comentarioProfesor}"></td>
+							<span sec:authorize="isAuthenticated()"> 
+								<span sec:authorize="hasRole('ROLE_ADMIN')">
+									<td>	
+										<a th:href="@{/eliminarval/} + ${Valoracion.id}" th:text="#{asignatura.acciones.eliminar}" class="btn btn-outline-danger"></a>
+									</td>
+								</span>
+							</span>
+						</tr>
+					</tbody>
+					<tfoot>
+						<tr>
+							<span sec:authorize="hasAnyRole('ROLE_ALUM', 'ROLE_ADMIN')">  
+								<td colspan="5">
+									<a th:href="@{/crearval}" class="btn btn-outline-primary btn-block" th:text="#{valoraciones.formulario.titulo.nuevo}"></a> 
+								</td>
+							</span>
+						</tr>
+					</tfoot>
+					
+				</table>
+			</div>
+		</div>
+	</div>
+	
+	<footer th:replace="layouts/base::footer(dark)"></footer>
+</body>
+</html>

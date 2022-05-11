@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layouts/base::head(dark)">
+	<meta charset="UTF-8"/>
+</head>
+<body>
+	<header th:replace="layouts/base::header(dark)"></header>
+
+	<div class="container">
+		<div class="card bg-white">
+			<div class="card-header">
+				<h3 th:text="#{asignaturas.lista.titulo}"></h3>
+			</div>
+			<div class="card-body">
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th th:text="#{asignaturas.Asignatura.nombre}"></th>
+							<th th:text="#{asignaturas.Asignatura.profesor}"></th>	
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="Asignatura: ${asignaturas}">
+							<td th:text="${Asignatura.nombre}"></td>
+							<td th:text="${Asignatura.profesor}"></td>
+						
+							<span sec:authorize="isAuthenticated()">  
+								
+								<td>	
+									<a th:href="@{lista-valoraciones/} + ${Asignatura.nombre}" th:text="#{asignatura.acciones.ver}" class="btn btn-outline-primary"></a>	
+								</td>
+								<span sec:authorize="hasRole('ROLE_ADMIN')">  
+									<td>	
+										<a th:href="@{eliminar/} + ${Asignatura.nombre}" th:text="#{asignatura.acciones.eliminar}" class="btn btn-outline-danger"></a>
+									</td>
+								</span>
+							</span>
+						</tr>
+					</tbody>
+					<tfoot>
+						<tr>
+							<div sec:authorize="hasRole('ROLE_ADMIN')">  
+								<td colspan="5">
+									<a th:href="@{crear}" class="btn btn-outline-primary btn-block" th:text="#{asignaturas.acciones.anadir}"></a> 
+								</td>
+							</div>
+						</tr>
+					</tfoot>
+				</table>
+			</div>
+		</div>
+	</div>
+	
+	<footer th:replace="layouts/base::footer(dark)"></footer>
+</body>
+</html>

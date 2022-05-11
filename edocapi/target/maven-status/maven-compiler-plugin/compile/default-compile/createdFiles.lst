@@ -1,0 +1,9 @@
+es/upm/dit/isst/edocapi/repository/ValoracionRepository.class
+es/upm/dit/isst/edocapi/controller/ValoracionController.class
+es/upm/dit/isst/edocapi/repository/PersonaRepository.class
+es/upm/dit/isst/edocapi/model/Persona.class
+es/upm/dit/isst/edocapi/repository/AsignaturaRepository.class
+es/upm/dit/isst/edocapi/controller/AsignaturaController.class
+es/upm/dit/isst/edocapi/model/Asignatura.class
+es/upm/dit/isst/edocapi/model/Valoracion.class
+es/upm/dit/isst/edocapi/SpringBootReactApplication.class

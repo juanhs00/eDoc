@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layouts/base::head(dark)">
+	<meta charset="UTF-8">
+</head>
+<body>
+    <header th:replace="layouts/base::header(dark)"></header>
+
+    <div class="container">
+        <div class="card bg-white">
+            <div class="card-header">
+				<h3 th:text="${accion} == 'guardar' ? #{valoraciones.formulario.titulo.nuevo} : #{valoraciones.formulario.titulo.editar}"></h3>
+			</div>
+        
+
+        <div class="card-body">
+            <form th:action="@{${accion}}" th:object="${valoracion}" method="post">
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label" th:text="#{asignaturas.Asignatura.nombre}"></label>
+                    <div class="col-sm-6">
+                        <input type="text" th:field="*{nombreAsignatura}">
+                        <small class="form-text text-danger" th:if="${#fields.hasErrors('nombreAsignatura')}" th:errors="*{nombreAsignatura}"></small>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label" th:text="#{valoraciones.Valoracion.email}"></label>
+                    <div class="col-sm-6">
+                        <input type="text" th:field="*{email}">
+                        <small class="form-text text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></small>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label" th:text="#{valoraciones.Valoracion.profesor}"></label>
+                    <div class="col-sm-6">
+                        <input type="text" th:field="*{profesor}">
+                        <small class="form-text text-danger" th:if="${#fields.hasErrors('profesor')}" th:errors="*{profesor}"></small>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label" th:text="#{valoraciones.Valoracion.puntuacionProfesor}"></label>
+                    <div class="col-sm-6">
+                        <input type="number" th:field="*{puntuacionProfesor}">
+                        <small class="form-text text-danger" th:if="${#fields.hasErrors('puntuacionProfesor')}" th:errors="*{puntuacionProfesor}"></small>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label" th:text="#{valoraciones.Valoracion.puntuacionAsignatura}"></label>
+                    <div class="col-sm-6">
+                        <input type="number" th:field="*{puntuacionAsignatura}">
+                        <small class="form-text text-danger" th:if="${#fields.hasErrors('puntuacionAsignatura')}" th:errors="*{puntuacionAsignatura}"></small>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label" th:text="#{valoraciones.Valoracion.comentarioAsignatura}"></label>
+                    <div class="col-sm-6">
+                        <input type="text" th:field="*{comentarioAsignatura}">
+                        <small class="form-text text-danger" th:if="${#fields.hasErrors('comentarioAsignatura')}" th:errors="*{comentarioAsignatura}"></small>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label" th:text="#{valoraciones.Valoracion.comentarioProfesor}"></label>
+                    <div class="col-sm-6">
+                        <input type="text" th:field="*{comentarioProfesor}">
+                        <small class="form-text text-danger" th:if="${#fields.hasErrors('comentarioProfesor')}" th:errors="*{comentarioProfesor}"></small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-6">
+                        <input type="submit" th:value="#{asignatura.acciones.guardar}" class="btn btn-outline-primary">
+                        <a th:href="@{${accion} == 'guardar' OR ${#fields.hasErrors('*')} ? 'lista-valoraciones/${valoracion.nombreAsignatura}' : '../lista-valoraciones/${valoracion.nombreAsignatura}'}"
+                        class="btn btn-outline-danger" th:text="#{asignatura.acciones.cancelar}"></a>
+                    </div>
+                </div>
+
+            </form>
+
+        </div>
+        </div>
+    </div>
+</body>
+
+<script>
+    
+</script>
